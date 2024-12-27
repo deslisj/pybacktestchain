@@ -184,6 +184,7 @@ class RebalanceFlag:
         pass 
 
 # Implementation of e.g. rebalancing at the end of each month
+
 @dataclass
 class EndOfMonth(RebalanceFlag):
     def time_to_rebalance(self, t: datetime):
