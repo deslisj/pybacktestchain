@@ -124,7 +124,10 @@ class Broker:
         """Calculates the total portfolio value based on the current market prices."""
         portfolio_value = self.cash
         for ticker, position in self.positions.items():
-            portfolio_value += position.quantity * market_prices[ticker]
+            if ticker in market_prices: # we want to check that there is a price for the ticker in the market prices
+                portfolio_value += position.quantity * market_prices[ticker]
+            else:
+                print(f"Error: Market price for ticker '{ticker}' not found.") 
         return portfolio_value
     
     def execute_portfolio(self, portfolio: dict, prices: dict, date: datetime):
